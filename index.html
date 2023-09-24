@@ -1,0 +1,43 @@
+<html>
+    <body>
+        <form onsubmit="saveToLocalStorage(event)">
+            <label> Name </label>
+            <input type="text" name="username" required/>
+            <label> EmailId </label>
+            <input type="email" name="emailId" required/>
+            <label> Phone Number </label>
+            <input type="tel" name="phonenumber" />
+            <button> Submit </button>
+        </form>
+        <ul id='listofitems'></ul>
+        <script>
+            function saveToLocalStorage(event) {
+                event.preventDefault();
+                const name=event.target.username.value;
+                const email=event.target.emailId.value;
+                const phonenumber=event.target.phonenumber.value;
+                // localStorage.setItem('name', name);
+                // localStorage.setItem('email', email);
+                // localStorage.setItem('phonenumber', phonenumber);
+                const obj = {
+                    name,
+                    email,
+                    phonenumber
+                }
+                localStorage.setItem(obj.email, JSON.stringify(obj))
+                showUserOnscreen(obj)
+            }
+
+                function showUserOnscreen(obj) {
+                    const parentELem = document.getElementById('listofitems')
+
+                    parentELem.innerHTML = parentELem.innerHTML+`<li>${obj.name} - ${obj.email} - ${obj.phonenumber}</li>`
+                }
+                 // was to store the underdetails it in localstorage
+                 // show the user details on the screen using Dom manipulation
+
+            
+                </script>
+            
+        </body>
+</html>
