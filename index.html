@@ -3,11 +3,11 @@
     <body>
         <form onsubmit="saveToLocalStorage(event)">
             <label> Name </label>
-            <input type="text" name="username" required/>
+            <input type="text" name="username" id="usernameInputTag" required/>
             <label> EmailId </label>
-            <input type="email" name="emailId" required/>
+            <input type="email" name="emailId" id="emailIdInputTag" required/>
             <label> Phone Number </label>
-            <input type="tel" name="phonenumber" />
+            <input type="tel" name="phonenumber" id="phonenumberInputTag" />
             <button> Submit </button>
         </form>
         <ul id='listofitems'>
@@ -43,10 +43,30 @@
                         localStorage.removeItem(obj.email)
                         parentELem.removeChild(childELem)
                     }
+                    const editButton = document.createElement('input')
+                    editButton.type = "Button"
+                    editButton.value = 'edit'
+                    editButton.onclick = () => {
+                        localStorage.removeItem(obj.email)
+                        parentELem.removeChild(childELem)
+                        document.getElementById('usernameInputTag').value = obj.name
+                        document.getElementById('emailIdInputTag').value = obj.email
+                        document.getElementById('phonenumberInputTag').value = obj.phonenumber
+                    
+                    }
                     childELem.appendChild(deleteButton)
+                    childELem.appendChild(editButton)
                     parentELem.appendChild(childELem)
 
+                
+
+                        
                     }
+
+
+
+
+                    
                     
             
                  // was to store the underdetails it in localstorage
